@@ -1,13 +1,10 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+//"math"
 
 func main() {
 	//invAmount, years, expectedReturn := 1000.0, 10.0, 5.5
-	var invAmount float64
+	/*v ar invAmount float64
 	var expectedReturn float64
 	var years float64
 
@@ -22,5 +19,6 @@ func main() {
 
 	futureValue := (invAmount) * math.Pow(1+expectedReturn/100, (years))
 
-	fmt.Println(futureValue)
+	fmt.Println(futureValue) */
+	calc()
 }
