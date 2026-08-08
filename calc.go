@@ -2,23 +2,13 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"strconv"
+
+	"example.com/pilot-app/Utility"
 )
 
-func writeBalanceToFile(balanceWrite float64) {
-	balanceText := fmt.Sprint(balanceWrite)
-	os.WriteFile("Balance.txt", []byte(balanceText), 0644)
+const fileName = "Balance.txt"
 
-}
-func getValueFromFile() float64 {
-	data, _ := os.ReadFile("Balance.txt")
-	balanceData := string(data)
-	balance, _ := strconv.ParseFloat(balanceData, 64)
-	return balance
-}
-
-func calc(choise int) {
+func calc() {
 	//var revenue float64
 	//var expense float64
 	//var taxRate float64
@@ -28,23 +18,38 @@ func calc(choise int) {
 	profit := EBT - (revenue * (taxRate / 100))
 
 	return EBT, profit */
+	fmt.Println("\nWelcome to the bank of Hirunika! \nWhat do you want to do today?")
+	fmt.Println("1. Check Balance \n2. Deposit Money \n3. Withdraw Money \n4. Exit")
 
-	switch choise {
-	case 1:
-		value := userInfo()
-		fmt.Println("Your balance is: ", value)
-	case 2:
-		depositMoney()
-	case 3:
-		withdrawMoney()
-	default:
-		fmt.Println("Pleasure doing business with you")
+	var choice int
+	index := 1
+
+	for {
+		fmt.Print("Please enter your choice: ")
+		fmt.Scan(&choice)
+		//calc(custChoice)
+		switch choice {
+		case 1:
+			value := userInfo()
+			fmt.Println("Your balance is: ", value)
+		case 2:
+			depositMoney()
+		case 3:
+			withdrawMoney()
+		default:
+			fmt.Println("Pleasure doing business with you")
+		}
+		index = choice
+		if index >= 4 {
+			break
+		}
+
 	}
 
 }
 
 func userInfo() float64 {
-	info := getValueFromFile()
+	info := Utility.GetValueFromFile(fileName)
 	return info
 
 }
@@ -56,7 +61,7 @@ func depositMoney() {
 	info := userInfo()
 	newBal := info + depAmmount
 	fmt.Println("Your ammount has been deposit \nYour new ammount is: ", newBal)
-	writeBalanceToFile(newBal)
+	Utility.WriteBalanceToFile(newBal)
 }
 
 func withdrawMoney() {
@@ -67,7 +72,7 @@ func withdrawMoney() {
 	if info > withAmmount {
 		newBal := info - withAmmount
 		fmt.Println("Your ammount has been withdrown \nYour new ammount is: ", newBal)
-		writeBalanceToFile(newBal)
+		Utility.WriteBalanceToFile(newBal)
 	} else {
 		fmt.Println("You cannot withdraw this much......")
 	}
