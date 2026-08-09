@@ -6,7 +6,7 @@ import (
 	note "example.com/pilot-app/Note"
 )
 
-//"math"
+// "math"
 
 func main() {
 	//invAmount, years, expectedReturn := 1000.0, 10.0, 5.5
