@@ -1,5 +1,11 @@
 package main
 
+import (
+	"fmt"
+
+	note "example.com/pilot-app/Note"
+)
+
 //"math"
 
 func main() {
@@ -35,7 +41,19 @@ func main() {
 
 	EBT, Profit := calc(revenue, expense, taxRate)
 	fmt.Println("EBT: ", EBT, "\nProfit: ", Profit) */
+	var func1 int
+	fmt.Println("What func you need? ")
+	fmt.Scan(&func1)
 
-	calc()
+	switch func1 {
+	case 1:
+		calc()
+	case 2:
+		pointers()
+	case 3:
+		structFunc()
+	default:
+		note.NoteFunc()
+	}
 
 }
