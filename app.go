@@ -1,10 +1,7 @@
 package main
 
-import (
-	"fmt"
-
-	note "example.com/pilot-app/Note"
-)
+//note "example.com/pilot-app/Note"
+import concurrency "example.com/pilot-app/Concurrency"
 
 // "math"
 
@@ -41,19 +38,29 @@ func main() {
 
 	EBT, Profit := calc(revenue, expense, taxRate)
 	fmt.Println("EBT: ", EBT, "\nProfit: ", Profit) */
-	var func1 int
-	fmt.Println("What func you need? ")
-	fmt.Scan(&func1)
+	// var func1 int
+	// fmt.Println("What func you need? ")
+	// fmt.Scan(&func1)
 
-	switch func1 {
-	case 1:
-		calc()
-	case 2:
-		pointers()
-	case 3:
-		structFunc()
-	default:
-		note.NoteFunc()
+	// switch func1 {
+	// case 1:
+	// 	calc()
+	// case 2:
+	// 	pointers()
+	// case 3:
+	// 	structFunc()
+	// default:
+	// 	note.NoteFunc()
+	// }
+	done := make(chan bool)
+	// done := make([]chan bool, 2)
+	// done[0] = make(chan bool)
+	// done[1] = make(chan bool)
+	go concurrency.GreetFunc(done)
+	go concurrency.SlowGreet(done)
+
+	for range done {
+		//this can do if and only if when you do know which func is taking longest
 	}
 
 }
